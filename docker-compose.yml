@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: ghcr.io/${GITHUB_REPOSITORY_OWNER:-user}/personal-blob-backend:latest
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - APP_ENV=${APP_ENV:-production}
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+      - JWT_SECRET=${JWT_SECRET}
+      - FRONTEND_URL=http://localhost:3000
+    volumes:
+      - blob-data:/app/data.db
+      - blob-uploads:/app/uploads
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: ghcr.io/${GITHUB_REPOSITORY_OWNER:-user}/personal-blob-frontend:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - NUXT_PUBLIC_API_BASE_URL=http://localhost:3001
+      - NUXT_PUBLIC_APP_ENV=${APP_ENV:-production}
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  blob-data:
+  blob-uploads:

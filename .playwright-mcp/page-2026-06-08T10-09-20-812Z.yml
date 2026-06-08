@@ -1,0 +1,82 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - navigation [ref=e4]:
+      - link "Personal Blob" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - link "Home" [ref=e8] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e9]:
+          - link "Writing" [ref=e10] [cursor=pointer]:
+            - /url: /articles
+        - listitem [ref=e11]:
+          - link "Projects" [ref=e12] [cursor=pointer]:
+            - /url: /projects
+        - listitem [ref=e13]:
+          - link "About" [ref=e14] [cursor=pointer]:
+            - /url: /about
+  - main [ref=e15]:
+    - generic [ref=e19]:
+      - generic [ref=e20]: Creative Technologist
+      - heading "Your Name" [level=1] [ref=e21]
+      - paragraph [ref=e22]: Writer and builder. Essays on life, code, and the spaces between.
+      - link "About me →" [ref=e23] [cursor=pointer]:
+        - /url: /about
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - heading "01" [level=2] [ref=e30]
+        - generic [ref=e32]: Latest Writing
+      - generic [ref=e33]:
+        - article [ref=e34]:
+          - time [ref=e35]: 2026/05/12
+          - heading "一种安静 →" [level=2] [ref=e36]:
+            - link "一种安静 →" [ref=e37] [cursor=pointer]:
+              - /url: /articles/a-kind-of-quiet
+          - paragraph
+          - generic [ref=e38]:
+            - generic [ref=e39]: 随笔
+            - generic [ref=e40]: 日常
+        - article [ref=e41]:
+          - time [ref=e42]: 2026/04/28
+          - heading "像素之后 →" [level=2] [ref=e43]:
+            - link "像素之后 →" [ref=e44] [cursor=pointer]:
+              - /url: /articles/beyond-pixels
+          - paragraph
+          - generic [ref=e45]:
+            - generic [ref=e46]: 设计
+            - generic [ref=e47]: 随笔
+      - link "All writing →" [ref=e48] [cursor=pointer]:
+        - /url: /articles
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - heading "02" [level=2] [ref=e52]
+        - generic [ref=e54]: Selected Projects
+      - generic [ref=e55]:
+        - article [ref=e56]:
+          - img "Bauhaus Poster Series" [ref=e58]
+          - generic [ref=e59]:
+            - time [ref=e61]: "2026"
+            - heading "Bauhaus Poster Series" [level=2] [ref=e62]
+            - paragraph
+            - generic [ref=e63]:
+              - generic [ref=e64]: Design
+              - generic [ref=e65]: Typography
+        - article [ref=e66]:
+          - generic [ref=e67]:
+            - time [ref=e69]: "2025"
+            - heading "Plaintext — A Writing Tool" [level=2] [ref=e70]
+            - paragraph
+            - generic [ref=e71]:
+              - generic [ref=e72]: Tool
+              - generic [ref=e73]: CLI
+            - link "View Project ↗" [ref=e74] [cursor=pointer]:
+              - /url: https://github.com
+      - link "All projects →" [ref=e75] [cursor=pointer]:
+        - /url: /projects
+  - contentinfo [ref=e76]:
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - generic [ref=e79]: Personal Blob
+        - generic [ref=e80]: writing · building · thinking
+      - generic [ref=e81]: © 2026 Your Name

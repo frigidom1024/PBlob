@@ -1,0 +1,42 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - navigation [ref=e4]:
+      - link "Personal Blob" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - link "Home" [ref=e8] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e9]:
+          - link "Writing" [ref=e10] [cursor=pointer]:
+            - /url: /articles
+        - listitem [ref=e11]:
+          - link "Projects" [ref=e12] [cursor=pointer]:
+            - /url: /projects
+        - listitem [ref=e13]:
+          - link "About" [ref=e14] [cursor=pointer]:
+            - /url: /about
+  - main [ref=e15]:
+    - article [ref=e16]:
+      - generic [ref=e18]:
+        - time [ref=e19]: 2026年5月12日
+        - heading "一种安静" [level=1] [ref=e20]
+        - generic [ref=e21]:
+          - generic [ref=e22]: 随笔
+          - generic [ref=e23]: 日常
+      - generic [ref=e25]:
+        - paragraph [ref=e26]: 车厢很空。我坐在靠窗的位置，看外面的风景从城市变成乡镇，又从乡镇变成田野。耳机里的音乐放完了，但没有去换。
+        - paragraph [ref=e27]: 以前坐长途车总要做点什么 —— 看书、听播客、回消息。好像不把这段时间填满就是浪费。但最近我开始试着什么都不做，只是看着窗外，让思绪自己飘。
+        - paragraph [ref=e28]: 刚开始很难。手会不自觉地摸手机，脑子里会冒出"该做点什么"的念头。但熬过那十几分钟，一种奇异的安静就来了。窗外的树、电线杆、远处的房子，它们一个一个地后退，像某种缓慢的节拍器。
+        - paragraph [ref=e29]: 到站的时候，我甚至有点不想下车。
+        - separator [ref=e30]
+        - paragraph [ref=e31]: 后来我跟朋友说起这件事。他说他懂，他把这叫做"移动中的冥想"。我说我没想那么复杂，我就是觉得，那些什么都没做的时刻，反而比很多刻意安排的事情更让人记得住。
+        - paragraph [ref=e32]: 我们是不是太害怕无聊了？每时每刻都要被信息填满，等红灯的几秒都要刷一下手机。但无聊本身可能是一种稀缺品，一种我们正在失去的能力。
+        - paragraph [ref=e33]: 我决定每周至少坐一次长途车，什么都不带，什么都不做。就只是坐着，看风景后退。
+        - paragraph [ref=e34]: 这是一种练习。练习和自己相处。
+  - contentinfo [ref=e35]:
+    - generic [ref=e36]:
+      - generic [ref=e37]:
+        - generic [ref=e38]: Personal Blob
+        - generic [ref=e39]: writing · building · thinking
+      - generic [ref=e40]: © 2026 Your Name

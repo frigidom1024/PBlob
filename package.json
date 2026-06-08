@@ -1,0 +1,13 @@
+{
+  "name": "personal-blob-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && node --watch src/index.js",
+    "dev:frontend": "cd frontend && npx nuxt dev",
+    "seed": "cd backend && node src/db/seed.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

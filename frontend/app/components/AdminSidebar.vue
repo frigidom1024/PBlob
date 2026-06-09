@@ -7,12 +7,6 @@ const config = useRuntimeConfig()
 const isDev = config.public.appEnv !== 'production'
 
 onMounted(async () => {
-  const route = useRoute()
-  if (route.query.token) {
-    localStorage.setItem('admin_token', route.query.token as string)
-    await navigateTo('/admin')
-  }
-
   // 非 production 环境直接设置 mock 用户
   if (isDev) {
     user.value = { id: 0, github_login: 'dev-user', avatar_url: '' }

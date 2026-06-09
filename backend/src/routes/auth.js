@@ -48,10 +48,14 @@ router.get('/callback', async (req, res) => {
     })
     const githubUser = await userRes.json()
 
+    // 调试：打印 GitHub 返回的用户信息
+    console.error('[OAuth Debug] githubUser:', JSON.stringify(githubUser, null, 2))
+
     // 检查白名单
     const db = getDb()
     const admin = db.prepare('SELECT * FROM admins WHERE github_id = ?').get(githubUser.id)
     if (!admin) {
+      console.error(`[OAuth Debug] github_id ${githubUser.id} not found in admins table`)
       return res.redirect(`${FRONTEND_URL}/admin/login?error=not_authorized`)
     }
 

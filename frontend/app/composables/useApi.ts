@@ -1,74 +1,71 @@
-import { ofetch } from 'ofetch'
-import type { FetchOptions } from 'ofetch'
-
 export function useApi() {
   const config = useRuntimeConfig()
   const baseURL = config.public.apiBaseUrl
 
-  const api = ofetch.create({
-    baseURL,
-    headers: { 'Content-Type': 'application/json' },
-    onResponseError({ response }) {
-      if (response.status === 401) {
-        const token = localStorage.getItem('admin_token')
-        if (token) {
+  function getAuthHeaders() {
+    if (!import.meta.client) return {}
+    const token = localStorage.getItem('admin_token')
+    return token ? { Authorization: `Bearer ${token}` } : {}
+  }
+
+  async function request<T = any>(path: string, opts: Record<string, any> = {}): Promise<T> {
+    return $fetch<T>(`${baseURL}${path}`, {
+      ...opts,
+      headers: { ...getAuthHeaders(), ...opts.headers },
+      onResponseError({ response }) {
+        if (response.status === 401 && import.meta.client) {
           localStorage.removeItem('admin_token')
           navigateTo('/admin/login')
         }
-      }
-    },
-  } as FetchOptions)
-
-  function getAuthHeaders() {
-    const token = localStorage.getItem('admin_token')
-    return token ? { Authorization: `Bearer ${token}` } : {}
+      },
+    })
   }
 
   return {
     // 公开方法
     async getArticles(params?: Record<string, any>) {
-      return api('/api/articles', { params })
+      return request('/api/articles', { params })
     },
     async getArticle(slug: string) {
-      return api(`/api/articles/${slug}`)
+      return request(`/api/articles/${slug}`)
     },
     async getProjects(params?: Record<string, any>) {
-      return api('/api/projects', { params })
+      return request('/api/projects', { params })
     },
     async getProject(id: number | string) {
-      return api(`/api/projects/${id}`)
+      return request(`/api/projects/${id}`)
     },
 
     // 管理方法
     async createArticle(data: any) {
-      return api('/api/articles', { method: 'POST', body: data, headers: getAuthHeaders() })
+      return request('/api/articles', { method: 'POST', body: data })
     },
     async updateArticle(id: number, data: any) {
-      return api(`/api/articles/${id}`, { method: 'PUT', body: data, headers: getAuthHeaders() })
+      return request(`/api/articles/${id}`, { method: 'PUT', body: data })
     },
     async deleteArticle(id: number) {
-      return api(`/api/articles/${id}`, { method: 'DELETE', headers: getAuthHeaders() })
+      return request(`/api/articles/${id}`, { method: 'DELETE' })
     },
     async createProject(data: any) {
-      return api('/api/projects', { method: 'POST', body: data, headers: getAuthHeaders() })
+      return request('/api/projects', { method: 'POST', body: data })
     },
     async updateProject(id: number, data: any) {
-      return api(`/api/projects/${id}`, { method: 'PUT', body: data, headers: getAuthHeaders() })
+      return request(`/api/projects/${id}`, { method: 'PUT', body: data })
     },
     async deleteProject(id: number) {
-      return api(`/api/projects/${id}`, { method: 'DELETE', headers: getAuthHeaders() })
+      return request(`/api/projects/${id}`, { method: 'DELETE' })
     },
 
     // 上传
     async uploadImage(file: File) {
       const formData = new FormData()
       formData.append('file', file)
-      return api('/api/upload', { method: 'POST', body: formData, headers: getAuthHeaders() })
+      return request('/api/upload', { method: 'POST', body: formData })
     },
 
     // 认证
     async getMe() {
-      return api('/api/auth/me', { headers: getAuthHeaders() })
+      return request('/api/auth/me')
     },
     getLoginUrl() {
       return `${baseURL}/api/auth/github`

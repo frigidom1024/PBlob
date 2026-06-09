@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  article: { id: number; slug: string; title: string; date: string; created_at: string; excerpt: string; tags?: string[]; cover_image?: string }
+  article: { id: number; slug: string; title: string; date: string; created_at: string; excerpt: string; category?: string; tags?: string[]; cover_image?: string }
   featured?: boolean
 }>()
 
@@ -22,12 +22,9 @@ const editorialDate = computed(() => {
     <div class="card-body">
       <div class="card-meta">
         <time class="card-date" :datetime="article.date">{{ editorialDate }}</time>
+        <span v-if="article.category" class="card-category label">{{ article.category }}</span>
         <div v-if="article.tags?.length" class="card-tags">
-          <span
-            v-for="tag in article.tags.slice(0, 2)"
-            :key="tag"
-            class="card-tag label"
-          >{{ tag }}</span>
+          <span v-for="tag in article.tags.slice(0, 2)" :key="tag" class="card-tag label">{{ tag }}</span>
         </div>
       </div>
       <h2 :class="featured ? 'headline' : 'title'">
@@ -92,6 +89,15 @@ const editorialDate = computed(() => {
   font-size: 0.8125rem;
   color: var(--color-text-secondary);
   line-height: 1.4;
+}
+
+.card-category {
+  font-size: 0.7rem;
+  padding: 0.15em 0.6em;
+  background: oklch(48% 0.22 30 / 0.08);
+  color: var(--color-primary);
+  letter-spacing: 0.04em;
+  font-weight: 500;
 }
 
 .card-tags {

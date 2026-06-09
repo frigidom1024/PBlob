@@ -24,7 +24,7 @@ async function removeProject(id: number) {
         <h1 class="title">项目管理</h1>
         <p class="caption page-desc">共 {{ projects.length }} 个项目</p>
       </div>
-      <NuxtLink to="/admin/projects/new" class="page-btn label">添加项目</NuxtLink>
+      <NuxtLink to="/admin/projects/create" class="page-btn label">添加项目</NuxtLink>
     </div>
 
     <div class="data-table">

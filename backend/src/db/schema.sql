@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS articles (
   excerpt       TEXT NOT NULL DEFAULT '',
   content       TEXT NOT NULL DEFAULT '',
   tags          TEXT NOT NULL DEFAULT '[]',
+  category      TEXT NOT NULL DEFAULT '随笔',
   cover_image   TEXT,
   published     INTEGER NOT NULL DEFAULT 0,
   created_at    DATETIME DEFAULT (datetime('now')),

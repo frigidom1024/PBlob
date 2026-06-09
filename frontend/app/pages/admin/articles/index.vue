@@ -24,7 +24,7 @@ async function removeArticle(id: number) {
         <h1 class="title">文章管理</h1>
         <p class="caption page-desc">共 {{ articles.length }} 篇文章</p>
       </div>
-      <NuxtLink to="/admin/articles/new" class="page-btn label">写新文章</NuxtLink>
+      <NuxtLink to="/admin/articles/create" class="page-btn label">写新文章</NuxtLink>
     </div>
 
     <div class="data-table">

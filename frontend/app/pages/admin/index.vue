@@ -32,13 +32,19 @@ const publishedProjects = computed(() => projects.value.filter((p: any) => p.pub
         <span class="dash-card-icon">✎</span>
         <span class="dash-card-num">{{ articles.length }}</span>
         <span class="dash-card-label label">文章 ({{ publishedArticles }} 已发布)</span>
-        <NuxtLink to="/admin/articles/new" class="dash-card-action label">写新文章 →</NuxtLink>
+        <NuxtLink to="/admin/articles/create" class="dash-card-action label">写新文章 →</NuxtLink>
+      </div>
+      <div class="dash-card">
+        <span class="dash-card-icon">✎</span>
+        <span class="dash-card-num">{{ articles.length + projects.length }}</span>
+        <span class="dash-card-label label">写作工作台</span>
+        <NuxtLink to="/admin/workbench" class="dash-card-action label">打开写作台 →</NuxtLink>
       </div>
       <div class="dash-card">
         <span class="dash-card-icon">◧</span>
         <span class="dash-card-num">{{ projects.length }}</span>
         <span class="dash-card-label label">项目 ({{ publishedProjects }} 已发布)</span>
-        <NuxtLink to="/admin/projects/new" class="dash-card-action label">添加项目 →</NuxtLink>
+        <NuxtLink to="/admin/projects/create" class="dash-card-action label">添加项目 →</NuxtLink>
       </div>
     </div>
 

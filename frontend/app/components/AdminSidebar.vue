@@ -40,6 +40,7 @@ const nav = [
   { label: '仪表盘', icon: '⊞', to: '/admin' },
   { label: '文章', icon: '✎', to: '/admin/articles' },
   { label: '项目', icon: '◧', to: '/admin/projects' },
+  { label: '写作台', icon: '✎', to: '/admin/workbench' },
 ]
 </script>
 

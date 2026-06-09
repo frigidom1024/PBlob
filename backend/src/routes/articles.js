@@ -7,25 +7,25 @@ const router = Router()
 // GET /api/articles — 公开文章列表
 router.get('/', (req, res) => {
   const db = getDb()
-  const { published, page = 1, per_page = 50 } = req.query
+  const { published, category, page = 1, per_page = 50 } = req.query
   const offset = (Math.max(1, Number(page)) - 1) * Number(per_page)
 
-  let where = ''
+  const conditions = []
   const params = []
-  if (published === '1') {
-    where = 'WHERE published = 1'
-  } else if (published === '0') {
-    where = 'WHERE published = 0'
-  }
+  if (published === '1') { conditions.push('published = 1') }
+  else if (published === '0') { conditions.push('published = 0') }
+  if (category) { conditions.push('category = ?'); params.push(category) }
 
-  const total = db.prepare(`SELECT COUNT(*) as count FROM articles ${where}`).get().count
+  const where = conditions.length ? 'WHERE ' + conditions.join(' AND ') : ''
+
+  const total = db.prepare(`SELECT COUNT(*) as count FROM articles ${where}`).get(...params).count
 
   const rows = db.prepare(`
-    SELECT id, slug, title, excerpt, tags, cover_image, published, created_at, updated_at
+    SELECT id, slug, title, excerpt, tags, category, cover_image, published, created_at, updated_at
     FROM articles ${where}
     ORDER BY created_at DESC
     LIMIT ? OFFSET ?
-  `).all(Number(per_page), offset)
+  `).all(...params, Number(per_page), offset)
 
   const data = rows.map(r => ({ ...r, tags: JSON.parse(r.tags || '[]'), date: r.created_at }))
 
@@ -45,7 +45,7 @@ router.get('/:slug', (req, res) => {
 // POST /api/articles — 创建文章
 router.post('/', requireAuth, (req, res) => {
   const db = getDb()
-  const { slug, title, excerpt, content, tags, cover_image, published } = req.body
+  const { slug, title, excerpt, content, tags, category, cover_image, published } = req.body
 
   if (!title) {
     return res.status(400).json({ error: { code: 'VALIDATION', message: 'Title is required' } })
@@ -55,9 +55,9 @@ router.post('/', requireAuth, (req, res) => {
 
   try {
     const result = db.prepare(`
-      INSERT INTO articles (slug, title, excerpt, content, tags, cover_image, published)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
-    `).run(finalSlug, title, excerpt || '', content || '', JSON.stringify(tags || []), cover_image || null, published ? 1 : 0)
+      INSERT INTO articles (slug, title, excerpt, content, tags, category, cover_image, published)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(finalSlug, title, excerpt || '', content || '', JSON.stringify(tags || []), category || '随笔', cover_image || null, published ? 1 : 0)
 
     const article = db.prepare('SELECT * FROM articles WHERE id = ?').get(result.lastInsertRowid)
     res.status(201).json({ data: { ...article, tags: JSON.parse(article.tags || '[]'), date: article.created_at } })
@@ -72,7 +72,7 @@ router.post('/', requireAuth, (req, res) => {
 // PUT /api/articles/:id — 更新文章
 router.put('/:id', requireAuth, (req, res) => {
   const db = getDb()
-  const { title, excerpt, content, tags, cover_image, published, slug } = req.body
+  const { title, excerpt, content, tags, category, cover_image, published, slug } = req.body
 
   const existing = db.prepare('SELECT * FROM articles WHERE id = ?').get(req.params.id)
   if (!existing) {
@@ -80,7 +80,7 @@ router.put('/:id', requireAuth, (req, res) => {
   }
 
   db.prepare(`
-    UPDATE articles SET title=?, slug=?, excerpt=?, content=?, tags=?, cover_image=?, published=?, updated_at=datetime('now')
+    UPDATE articles SET title=?, slug=?, excerpt=?, content=?, tags=?, category=?, cover_image=?, published=?, updated_at=datetime('now')
     WHERE id=?
   `).run(
     title ?? existing.title,
@@ -88,6 +88,7 @@ router.put('/:id', requireAuth, (req, res) => {
     excerpt ?? existing.excerpt,
     content ?? existing.content,
     JSON.stringify(tags ?? JSON.parse(existing.tags)),
+    category ?? existing.category,
     cover_image ?? existing.cover_image,
     published !== undefined ? (published ? 1 : 0) : existing.published,
     req.params.id,

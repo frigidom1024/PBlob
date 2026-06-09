@@ -15,7 +15,9 @@ COPY --from=builder /app/src ./src
 COPY --from=builder /app/uploads ./uploads
 COPY --from=builder /app/package.json ./
 
-RUN mkdir -p /app/data && chown appuser:appgroup /app/data
+RUN chown appuser:appgroup /app \
+    && mkdir -p /app/data \
+    && chown appuser:appgroup /app/data
 
 EXPOSE 3001
 

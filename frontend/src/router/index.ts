@@ -20,7 +20,7 @@ const routes: RouteRecordRaw[] = [
     beforeEnter: authGuard,
     children: [
       { path: '',               name: 'admin-dashboard',    component: () => import('@/pages/admin/index.vue') },
-      { path: 'login',          name: 'admin-login',        component: () => import('@/pages/admin/login.vue') },
+      { path: 'login',          name: 'admin-login',        component: () => import('@/pages/admin/login.vue'), meta: { requiresAuth: false } },
       { path: 'workbench',      name: 'admin-workbench',    component: () => import('@/pages/admin/workbench.vue') },
       { path: 'articles',       name: 'admin-articles',     component: () => import('@/pages/admin/articles/index.vue') },
       { path: 'articles/create', name: 'admin-articles-create', component: () => import('@/pages/admin/articles/create.vue') },

@@ -15,8 +15,18 @@ export function authGuard(
     return next({ path: to.path, query })
   }
 
-  const token = localStorage.getItem('admin_token')
-  if (!token && to.path !== '/admin/login') {
+  // Skip auth for routes that don't require it (e.g. login page)
+  if (to.matched.some(r => r.meta?.requiresAuth === false)) {
+    return next()
+  }
+
+  try {
+    const token = localStorage.getItem('admin_token')
+    if (!token) {
+      return next('/admin/login')
+    }
+  } catch {
+    // localStorage unavailable (e.g. privacy mode), treat as unauthenticated
     return next('/admin/login')
   }
   next()

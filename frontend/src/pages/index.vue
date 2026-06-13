@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useApi } from '@/composables/useApi'
 import ScrollReveal from '@/components/ScrollReveal.vue'
+import CanvasBackground from '@/components/CanvasBackground.vue'
 import ArticleCard from '@/components/ArticleCard.vue'
 import ProjectCard from '@/components/ProjectCard.vue'
 
@@ -27,6 +28,7 @@ const projects = computed(() => (projectsData.value?.data || []).slice(0, 2))
 <template>
   <!-- ── Magazine Cover: Masthead ── -->
   <section class="masthead">
+    <CanvasBackground />
     <div class="masthead-inner">
       <ScrollReveal>
         <span class="masthead-kicker label">Creative Technologist</span>
@@ -102,6 +104,8 @@ const projects = computed(() => (projectsData.value?.data || []).slice(0, 2))
 }
 
 .masthead-inner {
+  position: relative;
+  z-index: 1;
   flex: 1;
   display: flex;
   flex-direction: column;

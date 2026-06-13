@@ -17,10 +17,10 @@
 
 /* ── Dark Mode ── */
 html.dark {
-  --color-primary: oklch(78% 0.10 190);           /* #6FD1D7 cyan */
-  --color-primary-hover: oklch(88% 0.16 170);     /* #5DF8D8 mint */
-  --color-primary-deep: oklch(20% 0.04 240);      /* #093C5D navy */
-  --color-accent: oklch(88% 0.16 170);            /* #5DF8D8 mint */
+  --color-primary: oklch(45% 0.08 215);              /* #3B7597 medium blue */
+  --color-primary-hover: oklch(78% 0.10 190);         /* #6FD1D7 light cyan */
+  --color-primary-deep: oklch(20% 0.04 240);          /* #093C5D navy */
+  --color-accent: oklch(88% 0.16 170);                /* #5DF8D8 mint */
 
   --color-bg: oklch(20% 0.04 240);                /* #093C5D */
   --color-bg-alt: oklch(26% 0.05 235);            /* #0F4A6F */

@@ -177,10 +177,16 @@ const projects = computed(() => (projectsData.value?.data || []).slice(0, 2))
 .masthead-scroll {
   text-align: center;
   padding-bottom: var(--space-xl);
-  color: var(--color-reversed-secondary);
-  letter-spacing: 0.1em;
-  font-size: 0.65rem;
-  opacity: 0.5;
+  color: var(--color-reversed);
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  opacity: 0.6;
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.6; transform: translateY(0); }
+  50% { opacity: 0.25; transform: translateY(4px); }
 }
 
 /* ════════════════════════════════════

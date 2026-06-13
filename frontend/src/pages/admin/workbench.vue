@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, nextTick, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useApi } from '@/composables/useApi'
+import { useTheme } from '@/composables/useTheme'
 
 function debounce<T extends (...args: any[]) => any>(fn: T, delay: number) {
   let timer: ReturnType<typeof setTimeout>
@@ -13,6 +14,7 @@ function debounce<T extends (...args: any[]) => any>(fn: T, delay: number) {
 
 const api = useApi()
 const router = useRouter()
+const { isDark, toggle: toggleTheme } = useTheme()
 
 const CATEGORIES = ['技术', '阅读', '故事', '随笔'] as const
 
@@ -529,6 +531,21 @@ watch(isNewArticle, (v) => {
               <span class="toggle-knob"></span>
             </button>
           </div>
+          <div class="settings-row">
+            <div class="settings-info">
+              <span class="settings-label">主题</span>
+              <span class="settings-desc caption">{{ isDark ? '深色模式' : '亮色模式' }}</span>
+            </div>
+            <button
+              :class="['toggle', { 'toggle--on': isDark }]"
+              @click="toggleTheme"
+              role="switch"
+              :aria-checked="isDark"
+              :title="isDark ? '切换到亮色模式' : '切换到深色模式'"
+            >
+              <span class="toggle-knob">{{ isDark ? '☾' : '☀' }}</span>
+            </button>
+          </div>
         </div>
 
         <!-- Custom Editor -->
@@ -1029,6 +1046,11 @@ watch(isNewArticle, (v) => {
   background: var(--color-bg);
   transition: transform var(--duration-fast);
   box-shadow: 0 1px 2px oklch(0% 0 0 / 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  line-height: 1;
 }
 
 .toggle--on .toggle-knob {

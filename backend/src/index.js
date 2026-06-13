@@ -16,7 +16,23 @@ const PORT = process.env.PORT || 3001
 
 // 中间件
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }))
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:3000', credentials: true }))
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:5175',
+].filter(Boolean)
+
+app.use(cors({
+  origin: (origin, cb) => {
+    // Allow requests with no origin (server-to-server, curl, etc.)
+    if (!origin || allowedOrigins.includes(origin)) return cb(null, true)
+    // In dev, allow any localhost origin
+    if (origin.startsWith('http://localhost:')) return cb(null, true)
+    cb(null, true)
+  },
+  credentials: true,
+}))
 app.use(express.json())
 
 // 静态文件（上传的图片）

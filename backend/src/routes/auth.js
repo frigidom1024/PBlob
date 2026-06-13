@@ -8,7 +8,7 @@ const {
   GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET,
   JWT_SECRET = 'dev-secret',
-  FRONTEND_URL = 'http://localhost:3000',
+  FRONTEND_URL = 'http://localhost:5173',
   APP_ENV = 'development',
 } = process.env
 const isDev = APP_ENV !== 'production'

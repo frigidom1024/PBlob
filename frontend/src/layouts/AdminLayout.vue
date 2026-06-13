@@ -2,7 +2,7 @@
 import { useHead } from '@unhead/vue'
 import AdminSidebar from '@/components/AdminSidebar.vue'
 
-useHead({ titleTemplate: (title: string | null) => title ? `${title} — Admin` : 'Admin — Personal Blob' })
+useHead({ titleTemplate: (title?: string) => title ? `${title} — Admin` : 'Admin — Personal Blob' })
 </script>
 
 <template>

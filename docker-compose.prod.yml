@@ -1,0 +1,67 @@
+version: "3.9"
+
+services:
+  # ==================== 反向代理 ====================
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - nginx-logs:/var/log/nginx
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # ==================== 后端 API ====================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    expose:
+      - "3001"
+    environment:
+      - PORT=3001
+      - APP_ENV=production
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+      - JWT_SECRET=${JWT_SECRET}
+      - FRONTEND_URL=${FRONTEND_URL}
+    volumes:
+      - blob-data:/app/data.db      # 数据库文件（代码中 DB_PATH 为 /app/data.db）
+      - blob-uploads:/app/uploads   # 上传文件
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # ==================== 前端 Nuxt ====================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    expose:
+      - "3000"
+    environment:
+      # 通过 nginx 同域访问，代码里已有 /api 前缀，所以默认留空
+      - NUXT_PUBLIC_API_BASE_URL=${NUXT_PUBLIC_API_BASE_URL}
+      - NUXT_PUBLIC_APP_ENV=production
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    external: true
+
+volumes:
+  blob-data:
+  blob-uploads:
+  nginx-logs:

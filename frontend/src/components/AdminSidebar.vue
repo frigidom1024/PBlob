@@ -43,7 +43,7 @@ const nav = [
 <template>
   <aside class="sidebar">
     <div class="sidebar-header">
-      <router-link to="/admin" class="sidebar-logo label">Personal Blob</router-link>
+      <router-link to="/" class="sidebar-logo label">Personal Blob</router-link>
       <span class="sidebar-badge label">Admin</span>
     </div>
     <nav class="sidebar-nav">

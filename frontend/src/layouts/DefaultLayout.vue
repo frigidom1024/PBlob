@@ -4,7 +4,7 @@ import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
 
 useHead({
-  titleTemplate: (title: string | null) => title ? `${title} — Personal Blob` : 'Personal Blob',
+  titleTemplate: (title?: string) => title ? `${title} — Personal Blob` : 'Personal Blob',
 })
 </script>
 

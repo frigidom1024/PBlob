@@ -5,7 +5,8 @@
       "Read(//c/Users/35009/.agents/skills/impeccable/reference/**)",
       "Bash(node \"C:\\\\Users\\\\35009\\\\.claude\\\\skills\\\\impeccable/scripts/load-context.mjs\")",
       "Bash(npx create *)",
-      "Read(//c/Users/35009/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0/skills/subagent-driven-development/**)"
+      "Read(//c/Users/35009/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0/skills/subagent-driven-development/**)",
+      "WebFetch(domain:api.github.com)"
     ]
   }
 }

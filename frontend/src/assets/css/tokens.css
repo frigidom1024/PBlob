@@ -13,7 +13,32 @@
 
   --color-reversed: oklch(90% 0.003 25);
   --color-reversed-secondary: oklch(70% 0.005 25);
+}
 
+/* ── Dark Mode ── */
+html.dark {
+  --color-primary: oklch(78% 0.10 190);           /* #6FD1D7 cyan */
+  --color-primary-hover: oklch(88% 0.16 170);     /* #5DF8D8 mint */
+  --color-primary-deep: oklch(20% 0.04 240);      /* #093C5D navy */
+  --color-accent: oklch(88% 0.16 170);            /* #5DF8D8 mint */
+
+  --color-bg: oklch(20% 0.04 240);                /* #093C5D */
+  --color-bg-alt: oklch(26% 0.05 235);            /* #0F4A6F */
+  --color-text: oklch(92% 0.01 200);              /* #E8F4F8 */
+  --color-text-secondary: oklch(65% 0.05 215);    /* #8BB8CC */
+  --color-border: oklch(32% 0.06 230);            /* #1E5A7A */
+
+  --color-reversed: oklch(92% 0.01 200);
+  --color-reversed-secondary: oklch(65% 0.05 215);
+}
+
+/* Smooth theme transition — both directions */
+body {
+  transition: background-color var(--duration-slow) var(--ease-out-quart),
+              color var(--duration-slow) var(--ease-out-quart);
+}
+
+:root {
   /* ── Typography ── */
   --font-display: 'Jost Variable', 'Jost', 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
   --font-body: 'Jost Variable', 'Jost', 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;

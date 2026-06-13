@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useTheme } from '@/composables/useTheme'
+
+const { isDark, toggle } = useTheme()
+
 const nav = [
   { label: 'Home', href: '/' },
   { label: 'Writing', href: '/articles' },
@@ -11,13 +15,24 @@ const nav = [
   <header class="site-header">
     <nav class="header-inner">
       <router-link to="/" class="logo label">Personal Blob</router-link>
-      <ul class="nav-list">
-        <li v-for="item in nav" :key="item.href">
-          <router-link :to="item.href" class="nav-link label">
-            {{ item.label }}
-          </router-link>
-        </li>
-      </ul>
+      <div class="header-right">
+        <ul class="nav-list">
+          <li v-for="item in nav" :key="item.href">
+            <router-link :to="item.href" class="nav-link label">
+              {{ item.label }}
+            </router-link>
+          </li>
+        </ul>
+        <button
+          class="theme-toggle label"
+          :title="isDark ? '切换到亮色模式' : '切换到深色模式'"
+          @click="toggle"
+          aria-label="切换主题"
+        >
+          <span v-if="isDark" class="theme-icon">☀</span>
+          <span v-else class="theme-icon">☾</span>
+        </button>
+      </div>
     </nav>
   </header>
 </template>
@@ -47,7 +62,35 @@ const nav = [
   transition: color var(--duration-fast) var(--ease-out-quart);
 }
 .logo:hover { color: var(--color-primary); }
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
 .nav-list { display: flex; gap: var(--space-lg); }
+.theme-toggle {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out-quart);
+  padding: 0;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+.theme-toggle:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.theme-icon {
+  display: inline-block;
+  line-height: 1;
+}
 .nav-link {
   position: relative;
   font-size: 0.75rem;

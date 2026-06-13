@@ -10,13 +10,13 @@ description: Personal website for essays and project showcase — Bauhaus-inform
 
 **Creative North Star: "The Bauhaus Cabinet"**
 
-A personal website that treats content display as a structural art. Every page is a composition of geometric fields: strong color blocks holding text, negative space as an active design element, and typography so sharply kerned it becomes the primary ornament. The design takes its cues from Bauhaus poster language — asymmetric grids, primary-color accents against near-white fields, and a single saturated color claiming a third of the surface without apology.
+A personal website that treats content display as a structural art. Every page is a composition of geometric fields: strong color blocks holding text, negative space as an active design element, and typography so sharply kerned it becomes the primary ornament. The design takes its cues from Bauhaus poster language — asymmetric grids, a warm four-hue palette against near-white fields, and saturated color claiming territory without apology.
 
 The atmosphere is calm but assertive. This is not a "personal blog" in the cozy sense; it's a curated exhibition of writing and work, where the frame is as deliberate as the pieces inside. Essays read in generous measure on warm-white fields. Project pages open with full-bleed color blocks that establish territory before content resolves.
 
 **Key Characteristics:**
 - Geometric composition: asymmetrical grids, orthogonal lines, right angles
-- One committed accent color owns 30–60% of key surfaces; the rest is tinted neutral
+- A committed four-hue palette — red, deep red, coral, yellow — carrying key surfaces
 - Typography is the interface — weight and scale contrast, never decorative type
 - White space is structural, not empty
 - Choreographed entrances: scroll reveals and transitions that feel architectural, not playful
@@ -24,19 +24,29 @@ The atmosphere is calm but assertive. This is not a "personal blog" in the cozy 
 
 ## 2. Colors
 
-**The Committed Field Rule.** One saturated accent owns a third of the visible area or more on key surfaces (hero, section headers, project cards). Its prevalence is the point — this is a Bauhaus palette, not a "one accent ≤10%" restraint. All other surfaces stay in tinted neutral territory.
+**Full Palette Strategy.** Four committed hues, each with a named role. No hue is a "secondary" accent — each occupies deliberate territory. The palette draws from Bauhaus primary-color tradition (red + yellow) but interpreted through a warmer, more personal lens.
 
-### Primary (Committed Accent)
-- **Bauhaus Red** `[to be resolved during implementation]`: The committed field color. Used on hero block backgrounds, section divider panels, project-page full-bleed headers, interactive element hover states. Approximate hue: a warm vermilion or deep cadmium red in the tradition of Bauhaus poster work. Not orange, not crimson.
+### Palette
+
+| Token | OKLCH | Hex | Role |
+|-------|-------|-----|------|
+| `--color-primary` | `oklch(48% 0.26 25)` | `#D51C39` | **Red.** Hero backgrounds, section dividers, full-bleed headers, interactive states. The dominant field color. |
+| `--color-primary-deep` | `oklch(25% 0.16 345)` | `#760031` | **Burgundy.** Deep contrast blocks, footer, admin sidebar active state. Adds weight without black. |
+| `--color-primary-hover` | `oklch(68% 0.22 30)` | `#FF6060` | **Coral.** Hover states, tag/category pill backgrounds, accent on light surfaces. Warmth without aggression. |
+| `--color-accent` | `oklch(88% 0.18 95)` | `#FEEC41` | **Yellow.** Reversed text on dark blocks, editorial highlights, inverted CTAs. Used sparingly for tension. |
 
 ### Neutral
-- **Warm Paper** `[to be resolved during implementation]`: Primary background for reading surfaces. A near-white tinted warm — like uncoated off-white printing stock. Not `#fff`.
-- **Ink Black** `[to be resolved during implementation]`: Primary text color on warm paper surfaces. A deep near-black with the slightest warmth (chroma ≤0.01). Not `#000`.
-- **Flint** `[to be resolved during implementation]`: Secondary text, metadata, captions, borders.
-- **Reversed Inscription** `[to be resolved during implementation]`: Text on the committed accent field — near-white, high contrast.
+
+All neutrals carry a trace of the primary hue (chroma 0.005–0.01, hue 25):
+
+- **Warm Paper** `--color-bg`: Primary reading surface. A near-white tinted warm — like uncoated off-white stock.
+- **Flint** `--color-text-secondary` / `--color-border`: Secondary text and separators.
+- **Ink Black** `--color-text`: Deep near-black with warmth. Not `#000`.
+- **Reversed** `--color-reversed`: Near-white text on color fields. Not `#fff`.
 
 ### Named Rules
-**The One Color Rule.** The primary accent is a single hue. No secondary accent, no tertiary palette. The visual tension comes from scale and placement decisions about that one color, not from adding more colors.
+
+**The No-Line Rule.** No `border-left` or `border-right` stripes. When separation is needed, use a full color block, a background tint shift, or nothing.
 
 **The No-Line Rule.** No `border-left` or `border-right` stripes. When separation is needed, use a full block of the primary accent, a background tint shift, or nothing.
 

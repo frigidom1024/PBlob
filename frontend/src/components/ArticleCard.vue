@@ -56,7 +56,7 @@ const editorialDate = computed(() => {
 .card-body { flex: 1; }
 .card-meta { display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-xs); }
 .card-date { font-size: 0.8125rem; color: var(--color-text-secondary); line-height: 1.4; }
-.card-category { font-size: 0.7rem; padding: 0.15em 0.6em; background: oklch(48% 0.22 30 / 0.08); color: var(--color-primary); letter-spacing: 0.04em; font-weight: 500; }
+.card-category { font-size: 0.7rem; padding: 0.15em 0.6em; background: oklch(48% 0.26 25 / 0.08); color: var(--color-primary); letter-spacing: 0.04em; font-weight: 500; }
 .card-tags { display: flex; gap: var(--space-2xs); }
 .card-tag { font-size: 0.625rem; padding: 0.25em 0.6em; background: var(--color-bg-alt); border: 1px solid var(--color-border); color: var(--color-text-secondary); }
 .card-link { display: inline-block; transition: color var(--duration-fast) var(--ease-out-quart); }

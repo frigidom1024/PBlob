@@ -194,7 +194,7 @@ function updateUrl() {
 }
 .lib-cat:hover {
   color: var(--color-primary);
-  background: oklch(48% 0.22 30 / 0.06);
+  background: oklch(48% 0.26 25 / 0.06);
 }
 .lib-cat.active {
   background: var(--color-primary);
@@ -262,7 +262,7 @@ function updateUrl() {
 .lib-card-cat {
   font-size: 0.7rem;
   padding: 0.15em 0.6em;
-  background: oklch(48% 0.22 30 / 0.08);
+  background: oklch(48% 0.26 25 / 0.08);
   color: var(--color-primary);
   letter-spacing: 0.04em;
   font-weight: 500;

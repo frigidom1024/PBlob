@@ -728,7 +728,7 @@ watch(isNewArticle, (v) => {
 }
 .cat-pill:hover {
   color: var(--color-primary);
-  background: oklch(48% 0.22 30 / 0.06);
+  background: oklch(48% 0.26 25 / 0.06);
 }
 .cat-pill.active {
   background: var(--color-primary);

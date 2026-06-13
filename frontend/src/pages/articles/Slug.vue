@@ -201,13 +201,13 @@ const readingTime = computed(() => {
   color: var(--color-primary);
   text-decoration: none;
   padding: 0.2em 0.6em;
-  background: oklch(48% 0.22 30 / 0.08);
+  background: oklch(48% 0.26 25 / 0.08);
   transition: all var(--duration-fast);
   letter-spacing: 0.04em;
   font-weight: 500;
 }
 .article-category:hover {
-  background: oklch(48% 0.22 30 / 0.18);
+  background: oklch(48% 0.26 25 / 0.18);
 }
 
 .article-tags {

@@ -33,7 +33,7 @@ Influenced by the Bauhaus tradition: geometric clarity, structural honesty, stro
 
 1. **Structure over decoration.** Layout earns its place from content hierarchy, not visual filler. Grid is the rhythm section, not the soloist. Bauhaus principle: form follows function, and function is reading + browsing.
 
-2. **Sharp contrast, sparingly.** The visual tension comes from few but deliberate clashes: thick vs. thin, heavy vs. light, full-bleed vs. generous margin. A single saturated accent carries the palette. Rest of the surface is tinted neutral.
+2. **Sharp contrast, sparingly.** The visual tension comes from deliberate clashes: thick vs. thin, heavy vs. light, full-bleed vs. generous margin. A committed four-hue palette (red, coral, burgundy, yellow) carries the surface, with warm-tinted neutrals as the resting state.
 
 3. **Content-first typography.** Typography is the primary interface. Hierarchy through weight + scale contrast (≥1.25 ratio). Generous leading. Tight measure discipline (65–75ch). No decorative type moves.
 

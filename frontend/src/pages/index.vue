@@ -30,10 +30,10 @@ const projects = computed(() => (projectsData.value?.data || []).slice(0, 2))
     <div class="masthead-inner">
       <ScrollReveal>
         <span class="masthead-kicker label">Creative Technologist</span>
-        <div class="masthead-title-block">
-          <h1 class="masthead-name">Your<br />Name</h1>
-          <div class="masthead-accent"></div>
-        </div>
+        <h1 class="masthead-title">
+          <span class="masthead-title-line">Your</span>
+          <span class="masthead-title-line">Name</span>
+        </h1>
         <p class="masthead-desc">Writer and builder. Essays on life, code, and the spaces between.</p>
         <div class="masthead-actions">
           <router-link to="/about" class="masthead-cta label">About</router-link>
@@ -41,12 +41,7 @@ const projects = computed(() => (projectsData.value?.data || []).slice(0, 2))
         </div>
       </ScrollReveal>
     </div>
-    <div class="masthead-geo">
-      <div class="mg-block mg-block--large"></div>
-      <div class="mg-block mg-block--small"></div>
-      <div class="mg-line"></div>
-      <div class="mg-circle"></div>
-    </div>
+    <div class="masthead-scroll label">Scroll ↓</div>
   </section>
 
   <!-- ── Feature 01: Writing ── -->
@@ -94,62 +89,57 @@ const projects = computed(() => (projectsData.value?.data || []).slice(0, 2))
 
 <style scoped>
 /* ════════════════════════════════════
-   Magazine Masthead (Cover)
+   Magazine Masthead (Tresmares-inspired)
    ════════════════════════════════════ */
 .masthead {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background: var(--color-primary);
   overflow: hidden;
   margin-bottom: var(--space-3xl);
+  position: relative;
 }
 
 .masthead-inner {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: var(--space-3xl) var(--content-padding);
   color: var(--color-reversed);
-  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
 }
 
 .masthead-kicker {
   display: inline-block;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xl);
   color: var(--color-reversed-secondary);
   letter-spacing: 0.12em;
+  font-size: 0.75rem;
 }
 
-.masthead-title-block {
+.masthead-title {
   display: flex;
-  align-items: flex-start;
-  gap: var(--space-md);
+  flex-direction: column;
+  gap: 0;
   margin-bottom: var(--space-lg);
 }
 
-.masthead-name {
+.masthead-title-line {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(4.5rem, 12vw, 9rem);
+  font-size: clamp(4.5rem, 14vw, 11rem);
   line-height: 0.85;
   letter-spacing: -0.04em;
-  text-wrap: balance;
-}
-
-.masthead-accent {
-  width: 12px;
-  height: 80px;
-  background: var(--color-reversed);
-  opacity: 0.25;
-  flex-shrink: 0;
-  margin-top: 0.3em;
 }
 
 .masthead-desc {
-  max-width: var(--measure-narrow);
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
-  line-height: 1.7;
+  max-width: var(--measure-wide);
+  font-size: clamp(1.125rem, 1.75vw, 1.35rem);
+  line-height: 1.6;
   color: var(--color-reversed-secondary);
   margin-bottom: var(--space-xl);
 }
@@ -164,12 +154,13 @@ const projects = computed(() => (projectsData.value?.data || []).slice(0, 2))
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
-  padding: var(--space-xs) var(--space-md);
+  padding: var(--space-sm) var(--space-lg);
   border: 1px solid var(--color-reversed);
   color: var(--color-reversed);
   transition:
     background var(--duration-fast) var(--ease-out-quart),
     color var(--duration-fast) var(--ease-out-quart);
+  font-size: 0.8rem;
 }
 
 .masthead-cta:hover {
@@ -182,50 +173,14 @@ const projects = computed(() => (projectsData.value?.data || []).slice(0, 2))
   letter-spacing: 0.08em;
 }
 
-/* ── Masthead geometric elements ── */
-.masthead-geo {
-  position: relative;
-  overflow: hidden;
-}
-
-.mg-block--large {
-  position: absolute;
-  top: 20%;
-  left: -10%;
-  width: 70%;
-  height: 60%;
-  background: var(--color-primary-deep);
-}
-
-.mg-block--small {
-  position: absolute;
-  bottom: 10%;
-  right: 15%;
-  width: 40%;
-  height: 25%;
-  background: var(--color-primary-deep);
-  opacity: 0.6;
-}
-
-.mg-line {
-  position: absolute;
-  top: 15%;
-  right: 5%;
-  width: 55%;
-  height: 2px;
-  background: var(--color-reversed);
-  opacity: 0.12;
-}
-
-.mg-circle {
-  position: absolute;
-  bottom: 35%;
-  right: 25%;
-  width: 180px;
-  height: 180px;
-  border: 3px solid var(--color-reversed-secondary);
-  border-radius: 50%;
-  opacity: 0.2;
+/* ── Scroll indicator ── */
+.masthead-scroll {
+  text-align: center;
+  padding-bottom: var(--space-xl);
+  color: var(--color-reversed-secondary);
+  letter-spacing: 0.1em;
+  font-size: 0.65rem;
+  opacity: 0.5;
 }
 
 /* ════════════════════════════════════
@@ -309,14 +264,11 @@ const projects = computed(() => (projectsData.value?.data || []).slice(0, 2))
 
 @media (max-width: 640px) {
   .masthead {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-  .masthead-geo {
-    display: none;
-  }
-  .masthead {
+    min-height: 90vh;
     margin-bottom: var(--space-2xl);
+  }
+  .masthead-title-line {
+    font-size: clamp(3rem, 14vw, 4.5rem);
   }
 }
 </style>
